@@ -56,7 +56,7 @@ The goal is to determine whether a given string of brackets (`()`, `{}`, `[]`) i
 
 ### Space Complexity: **O(n)**
 - **Reason**:
-  - In the worst case, all characters in the string are opening brackets (e.g., `"((((("`), requiring all of them to be pushed onto the stack.
+  - In the worst case, all characters in the string are opening brackets and lenght of the string is even (e.g., `"(((((("`), requiring all of them to be pushed onto the stack.
   - This results in **O(n)** space for the stack, where `n` is the length of the input string.
 
 ---
