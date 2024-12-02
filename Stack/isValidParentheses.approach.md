@@ -38,7 +38,7 @@ The goal is to determine whether a given string of brackets (`()`, `{}`, `[]`) i
 
 - **Length Check**: The string length is checked initially. If it's odd, it can never be valid, as every opening bracket must have a matching closing bracket.
 ```
-    if (s.length() % 2) return false; // Early exit for odd-length strings
+    if(s.length() % 2) return false; // Early exit for odd-length strings
 ```
 
 - **Simplified Stack Operations**: The stack is used only to store unmatched opening brackets. For closing brackets, the stack is directly checked for matching.
