@@ -217,3 +217,48 @@ By analyzing these test cases, it is clear how the stack-based solution works ef
 
 
 
+# Time and Space Complexity Analysis
+
+### Time Complexity
+
+The function processes the input string `s` character by character in a single loop. Let `n` be the length of the string.
+
+1. **Iteration through the string**:
+   - The loop runs exactly `n` times, where `n` is the number of characters in the string.
+   - Each character is either pushed onto the stack, ignored, or triggers a series of pop operations when a closing bracket `)` is encountered.
+
+2. **Pop operations on encountering `)`**:
+   - The worst-case scenario occurs when the stack contains a large number of elements before encountering a `)`. However, every element pushed onto the stack will eventually be popped, meaning each element is pushed and popped exactly once.
+
+Overall, the operations (push and pop) per character are constant, so the time complexity of processing each character is **O(1)**. Since there are `n` characters, the total time complexity is:
+
+**Time Complexity**: **O(n)**
+
+---
+
+### Space Complexity
+
+The function uses a stack to store characters during the iteration. Let’s analyze the space usage:
+
+1. **Stack Storage**:
+   - In the worst case, the stack stores all opening brackets `(` and operators encountered before a closing bracket `)` is processed.
+   - For an input with only opening brackets (e.g., `"((((((((")`), the stack can grow up to size `n`.
+   - In a balanced expression (e.g., `"(a + (b * c))"`), the stack size fluctuates but never exceeds `n`.
+
+2. **Auxiliary Variables**:
+   - A few auxiliary variables are used (e.g., `isRedundant`, `ch`), which require constant space **O(1)**.
+
+Thus, the dominant space usage comes from the stack, which in the worst case grows to size `n`.
+
+**Space Complexity**: **O(n)**
+
+---
+
+### Summary
+
+| Complexity Type | Value  | Explanation                                                                 |
+|------------------|--------|-----------------------------------------------------------------------------|
+| **Time**         | O(n)   | Each character is processed exactly once (pushed and popped).              |
+| **Space**        | O(n)   | Stack size can grow up to `n` in the worst case for unbalanced brackets.    |
+
+This makes the function efficient for processing mathematical expressions with reasonable string lengths.
