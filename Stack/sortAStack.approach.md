@@ -142,9 +142,15 @@ The `sortStack` function is correct and effectively sorts the stack using recurs
     - ...
     - Last call: Work for stack of size `n`.
 - Total work:
-\[
-1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}
+
+\[ 
+1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2} 
 \]
+
+Where:
+- \( n \) is the number of terms in the series.
+
+
 - This simplifies to **O(n²)** for large `n`.
 
 ---
