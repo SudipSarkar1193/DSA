@@ -17,9 +17,7 @@ Given an array `arr` where each element represents the height of a bar, calculat
 
 1. For each bar `i`, the amount of water trapped is determined by:
 
-   \[
-   \text{water_trapped} = \max(0, \min(\text{left_max}, \text{right_max}) - \text{arr}[i])
-   \]
+   water_trapped = max(0, min(left_max, right_max) - arr[i])
 
 2. We can use two pointers (`l` and `r`) to traverse the array and maintain the maximum height encountered so far from the left (`leftMax`) and the right (`rightMax`).
 
