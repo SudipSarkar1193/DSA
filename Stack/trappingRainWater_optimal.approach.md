@@ -1,6 +1,6 @@
 # Trapping Rainwater Problem 
 
-`([leetcode link](https://leetcode.com/problems/trapping-rain-water/))`
+[leetcode link](https://leetcode.com/problems/trapping-rain-water/)
 
 ## Problem Statement
 Given an array `arr` where each element represents the height of a bar, calculate how much rainwater can be trapped between the bars after a rainfall.
