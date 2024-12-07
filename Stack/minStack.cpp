@@ -1,26 +1,34 @@
-#include<bits/stdc++.h>
-using namespace std ;
-
 class MinStack {
 public:
-    stack<pair<int, int>> st;
-    MinStack() {}
+    stack<int> st ;
+    
+    vector<int> minArray;
+    
 
+    MinStack() {
+        minArray.push_back(INT_MAX); // Initialize with INT_MAX in the constructor
+    }
+    
     void push(int x) {
-        int currentMin = st.empty() ? x : min(x, st.top().second);
-        st.push({x, currentMin}); // Push the value and the current minimum
+        if( x <= minArray.back() ){
+            minArray.push_back(x);
+        }
+        st.push(x);
     }
     
     void pop() {
-        st.pop(); // Remove the top element
+        if( st.top() == minArray.back() ){
+            minArray.pop_back();
+        }
+        st.pop();
     }
     
     int top() {
-        return st.top().first; // Return the value part of the top pair
+        return st.top();
     }
     
     int getMin() {
-        return st.top().second; // Return the minimum part of the top pair
+        return minArray.back() ;
     }
 };
 
