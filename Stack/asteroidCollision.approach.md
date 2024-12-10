@@ -15,7 +15,7 @@ We are given an array `asteroids` of integers representing asteroids in a row.
 The goal is to find the state of the asteroids after all possible collisions.
 
 ### Link 
-(LeetCode link)[https://leetcode.com/problems/asteroid-collision/]
+[LeetCode Link](https://leetcode.com/problems/asteroid-collision/)
 
 
 
