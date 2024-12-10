@@ -58,11 +58,15 @@ int largestRectangleArea(vector<int>& arr) {
     *nse = nseArray(arr);
     int ans = INT_MIN ;
     for (int i = 0; i < arr.size(); i++){
-        int p = pse[i] == -1 ? i : pse[i];
-        int n = nse[i] == -1 ? i : nse[i];
-       
-        ans = max(ans,(n-p+1)*arr[i]);
+        int prev = pse[i] == -1 ? 0 : pse[i] + 1; // If no previous smaller, extend to start
+        int next = nse[i] == -1 ? arr.size() : nse[i]; // If no next smaller, extend to end
+        
+        // Calculate area for the current bar
+        ans = max(ans, (next - prev) * arr[i]);
     }
+
+    delete[] pse; 
+    delete[] nse; 
 
     return ans ;
 }
