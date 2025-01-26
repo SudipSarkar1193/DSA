@@ -28,69 +28,89 @@ The solution involves two main steps:
 ```cpp
 class Solution {
 private:
+    // Function to compute the Next Smaller Element (NSE) index for each element in the array
     int* nseIndex(vector<int>& arr) {
-        int* ans = new int[arr.size()];
-        stack<int> st;
+        int* ans = new int[arr.size()];  // Array to store the NSE indices
+        stack<int> st;  // Stack to help find the NSE
+
+        // Traverse the array from the end to the beginning
         for (int i = arr.size() - 1; i >= 0; i--) {
             int e = arr[i];
 
+            // Pop elements from the stack that are greater than or equal to the current element
             while (!st.empty() && arr[st.top()] >= e) {
                 st.pop();
             }
 
+            // If the stack is empty, there is no NSE for the current element
             if (st.empty()) {
-                ans[i] = -1;
+                ans[i] = -1;  // -1 indicates no NSE
             } else {
-                ans[i] = st.top();
+                ans[i] = st.top();  // The top of the stack is the NSE index
             }
-            st.push(i);
+            st.push(i);  // Push the current index onto the stack
         }
 
-        return ans;
+        return ans;  // Return the array of NSE indices
     }
 
+    // Function to compute the Previous Smaller Element (PSE) index for each element in the array
     int* pseIndex(vector<int>& arr) {
-        int* ans = new int[arr.size()];
-        stack<int> st;
+        int* ans = new int[arr.size()];  // Array to store the PSE indices
+        stack<int> st;  // Stack to help find the PSE
+
+        // Traverse the array from the beginning to the end
         for (int i = 0; i < arr.size(); i++) {
             int e = arr[i];
 
+            // Pop elements from the stack that are greater than or equal to the current element
             while (!st.empty() && arr[st.top()] >= e) {
                 st.pop();
             }
 
+            // If the stack is empty, there is no PSE for the current element
             if (st.empty()) {
-                ans[i] = -1;
+                ans[i] = -1;  // -1 indicates no PSE
             } else {
-                ans[i] = st.top();
+                ans[i] = st.top();  // The top of the stack is the PSE index
             }
-            st.push(i);
+            st.push(i);  // Push the current index onto the stack
         }
-        return ans;
+
+        return ans;  // Return the array of PSE indices
     }
 
 public:
+    // Function to compute the largest rectangle area in a histogram
     int largestRectangleArea(vector<int>& arr) {
-        int* nse = nseIndex(arr);
-        int* pse = pseIndex(arr);
-        int maxArea = INT_MIN;
+        int* nse = nseIndex(arr);  // Get the NSE indices
+        int* pse = pseIndex(arr);  // Get the PSE indices
+        int maxArea = INT_MIN;  // Initialize the maximum area to the smallest possible integer
+
+        // Traverse the array to compute the area for each bar
         for (int i = 0; i < arr.size(); i++) {
             int gap;
-            int next = nse[i];
-            int prev = pse[i];
+            int next = nse[i];  // Index of the next smaller element
+            int prev = pse[i];  // Index of the previous smaller element
+
+            // If there is no next smaller element, set it to the size of the array i.e index is JUST right side of the array!
             if (next == -1) {
                 next = arr.size();
             }
+
+            // If there is no previous smaller element, set it to -1 i.e index is JUST left side of the array!
             if (prev == -1) {
                 prev = -1;
             }
 
+            // Calculate the width of the rectangle (gap between next and previous smaller elements)
             gap = next - prev - 1;
 
+            // Calculate the area of the rectangle and update the maximum area if necessary
             maxArea = max(maxArea, gap * arr[i]);
         }
 
-        return maxArea;
+        return maxArea;  // Return the largest rectangle area
     }
 };
 ```
