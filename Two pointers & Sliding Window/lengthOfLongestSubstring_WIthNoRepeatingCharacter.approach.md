@@ -15,25 +15,13 @@ There are some edge cases we need to consider. Whenever we hit a repeating chara
 Also, we must always increment r++ at every step, no matter what. `Even if we encounter a repeating character, we handle it by shrinking the window, so for the next iteration, we still need to move the right pointer forward.`
 
 ## Programmatic Approach
+Programmatically, `we need to track whether a character has already been seen.` To do this, `we use an array (acting like a hash map)` `where we store the index of each character’s last occurrence at its corresponding ASCII index.`
 
-- To track if a character has already been seen, we use a **hash map (array)**.
-- We **store the index** of the character inside the array at its **ASCII index**.
-- We maintain **two pointers**:
-  - `left pointer (l)`: Marks the leftmost index of the window.
-  - `right pointer (r)`: Expands the window by moving forward.
+We also maintain two pointers:
 
-- **Expanding the Window**:  
-  - We increment `r` and **add new characters** to the window.
-  - If the character is **already seen**, we update `l` to **exclude its previous occurrence**.
-
-- **Handling Edge Cases**:  
-  - Before updating `l`, we **check if the previous occurrence is still inside the window**.
-  - If yes, we update `l`. Otherwise, we ignore it.
-
-- **Increment `r` at Every Step**:  
-  - No matter what, we always **increment `r++`** in each iteration.
-  - Even if a repeating character is found, we **handle it by shrinking the window**  
-    and still move `r` forward.
+The left pointer `represents the leftmost index` of our current window.
+The right pointer `represents the rightmost index` of our window.
+We keep moving the right pointer forward. If we `encounter` a repeating character (`one that has been seen before`), we update the left pointer `to exclude the previous occurrence of that character`. **This ensures that our window always contains `unique` characters**. Throughout this process, we continuously track the maximum length of the substring without repeating characters.
 
 ## Conclusion
 
