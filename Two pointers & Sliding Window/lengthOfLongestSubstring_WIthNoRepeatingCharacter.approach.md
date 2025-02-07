@@ -5,13 +5,14 @@
 To solve this problem, we use a **sliding window approach**.  
 We keep increasing the window size **until we encounter a repeating character**.  
 
-Whenever we hit a **repeating character** (a character that has already been seen),  
-we **shrink the window** from the left.  
-This means we move the left pointer so that the previous occurrence of the  
-character is excluded from the window.  
+Whenever we hit a **repeating character** (a character that has already been seen),we `shrink the window** from the left.`  
+`This means we move the left pointer so that the previous occurrence of the character is excluded from the window`.  
 
-We **continue this process** while keeping track of the **maximum length** of  
-a substring without repeating characters.
+`We **continue this process** while keeping track of the **maximum length** of a substring without repeating characters.`
+
+There are some edge cases we need to consider. Whenever we hit a repeating character, `the first thing we need to check is whether its previous occurrence is still within our current window.` If the previous occurrence is inside the window, we update the left pointer to exclude it and `then update the character’s latest occurrence.` Otherwise, we don’t need to adjust the left pointer.
+
+Also, we must always increment r++ at every step, no matter what. `Even if we encounter a repeating character, we handle it by shrinking the window, so for the next iteration, we still need to move the right pointer forward.`
 
 ## Programmatic Approach
 
