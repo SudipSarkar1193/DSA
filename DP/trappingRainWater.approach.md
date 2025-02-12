@@ -1,4 +1,35 @@
-# Trapping Rain Water Problem - Intuition & Approach
+# Trapping Rain Water Problem - Intuition & Approach (DP approach)
+
+
+## **Code Implementation (C++)**
+```cpp
+class Solution {
+public:
+    int trap(vector<int>& arr) {
+        int lmax = 0, rmax = 0, l = 0, r = arr.size() - 1, total = 0;
+
+        while (l < r) {
+            if (arr[l] <= arr[r]) {
+                if (arr[l] < lmax) {
+                    total += (lmax - arr[l]);
+                } else {
+                    lmax = arr[l];
+                }
+                l++;
+            } else {
+                if (arr[r] < rmax) {
+                    total += (rmax - arr[r]);
+                } else {
+                    rmax = arr[r];
+                }
+                r--;
+            }
+        }
+
+        return total;
+    }
+};
+```
 
 ## Interview answer :
 
@@ -10,7 +41,13 @@ The same logic applies in the other direction — **when we move the right point
 
 So, in simple terms, we’re always making the right decision at the right time. That’s why this approach works so well!
 
+**`---------------------------------------------------------`**
 
+At a particular index, this approach works because, **as we process elements, we always move forward by handling the smaller element first. This ensures that when we process an index, `it will never happen that on the extreme end (the other side), there exists a smaller boundary that we haven't accounted for`.**
+
+For example, if we are on the left side and processing the left pointer, it is guaranteed that on the right side, there will never be a greater value that is smaller than the current lmax. The same logic applies the other way around: when processing the right pointer, there will never be a greater value smaller than rmax on the left side.
+
+This guarantees that we are correctly calculating the trapped water at every step, making the approach both optimal and accurate.
 
 ## Intuition
 The problem requires us to calculate how much rainwater can be trapped between bars of different heights after raining.
@@ -43,35 +80,7 @@ To solve this efficiently, we need to understand the following observations:
 - **Time Complexity:** `O(n)`, since each element is processed at most once.
 - **Space Complexity:** `O(1)`, as we use only a few extra variables.
 
-## **Code Implementation (C++)**
-```cpp
-class Solution {
-public:
-    int trap(vector<int>& arr) {
-        int lmax = 0, rmax = 0, l = 0, r = arr.size() - 1, total = 0;
 
-        while (l < r) {
-            if (arr[l] <= arr[r]) {
-                if (arr[l] < lmax) {
-                    total += (lmax - arr[l]);
-                } else {
-                    lmax = arr[l];
-                }
-                l++;
-            } else {
-                if (arr[r] < rmax) {
-                    total += (rmax - arr[r]);
-                } else {
-                    rmax = arr[r];
-                }
-                r--;
-            }
-        }
-
-        return total;
-    }
-};
-```
 
 ## **Why This Approach?**
 - It avoids the extra space required for prefix and suffix arrays (`O(n) → O(1)`).
