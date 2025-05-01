@@ -10,4 +10,4 @@
 ```
 
 ### Key Take-away :  
-`tuples are compared lexicographically in Python.`
+**Tuples are compared `lexicographically` in Python.**
