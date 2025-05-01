@@ -41,7 +41,10 @@ class Solution:
                     heapq.heappop(pq)
                     
                 if pq :
-                    res.append(pq[0][1]) # DO NOT remove the first negative. Instead, we should just peek (i.e., use pq[0][1]) — the same negative might still be needed for the next window.
+                    res.append(pq[0][1]) 
+                    # DO NOT remove the first negative. 
+                    # Instead, we should just peek (i.e., use pq[0][1]) 
+                    # — the same negative might still be needed for the next window.
                 else :
                     res.append(0)  
 
